@@ -1,1 +1,57 @@
-<h1>hello</h1>
+<h1 class="text-center title">The Simplest App</h1>
+<h5 class="text-center">-Simply leave us a comment and who you are</h5>
+<hr /><br />
+
+<div class="text-center">
+  <button type="button" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
+    Add anything!
+  </button>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add anything to our page</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <%= simple_form_for @thing do |f| %>
+
+      <div class="modal-body">
+          
+        <div class="form-group">
+          <%= f.input :description, label: 'Tell us anything' %>
+          <small class="form-text text-muted">You can literally say anything</small>
+        </div>
+        <hr />
+        <div class="form-group">
+          <%= f.input :author, label: 'Tell us who you are' %>
+          <small class="form-text text-muted">Doesn't have to be your name</small>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= f.submit 'Create', class: 'btn btn-primary' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<br /><br />
+
+<div class="row">
+<% @things.each do |thing| %>
+  <div class="offset-1 col-4">
+    <blockquote>
+      <h1><%= thing.description %></h1>
+      <small>-<%= thing.author %></small>
+    </blockquote>
+  </div>
+<% end %>
+</div>
